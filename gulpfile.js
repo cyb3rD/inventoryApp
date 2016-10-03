@@ -47,10 +47,6 @@ gulp.task('vendor', function() {
     gulp.src('node_modules/systemjs/**')
         .pipe(gulp.dest(vendor + '/systemjs/'));
 
-    //ng2-bootstrap
-    gulp.src('node_modules/ng2-bootstrap/**')
-        .pipe(gulp.dest(vendor + '/ng2-bootstrap/'));
-
     //moment
     gulp.src('node_modules/moment/**')
         .pipe(gulp.dest(vendor + '/moment/'));
