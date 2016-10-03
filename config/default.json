@@ -1,0 +1,7 @@
+{
+    "DB": {
+        "username": "nikolay",
+        "password": "dbusrpass",
+        "url": "ds049496.mlab.com:49496/inventory"
+    }
+}
