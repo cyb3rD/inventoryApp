@@ -9,6 +9,17 @@ var appDev = 'assets/app/';
 var appProd = 'public/js/app/';
 var vendor = 'public/js/vendor';
 
+var angularBundles = {
+   'core': 'node_modules/@angular/core/bundles/core.umd.js',
+   'common': 'node_modules/@angular/common/bundles/common.umd.js',
+   'compiler': 'node_modules/@angular/compiler/bundles/compiler.umd.js',
+   'browser': 'node_modules/@angular/platform-browser/bundles/platform-browser.umd.js',
+   'browserdynamic': 'node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
+   'http': 'node_modules/@angular/http/bundles/http.umd.js',
+   'router': 'node_modules/@angular/router/bundles/router.umd.js',
+   'forms': 'node_modules/@angular/forms/bundles/forms.umd.js'
+}
+
 var tsconfig = gulpTypescript.createProject('tsconfig.json');
 
 gulp.task('build-ts', function() {
@@ -28,17 +39,40 @@ gulp.task('clean', function() {
    del(appProd + '/**/*');
 });
 
-gulp.task('vendor', function() {
-    gulp.src('node_modules/@angular/**')
+
+gulp.task('bundles', function() {
+    gulp.src(angularBundles.core)
+        .pipe(gulp.dest(vendor + '/@angular'));
+    gulp.src(angularBundles.common)
+        .pipe(gulp.dest(vendor + '/@angular'));
+    gulp.src(angularBundles.compiler)
+        .pipe(gulp.dest(vendor + '/@angular'));
+    gulp.src(angularBundles.browser)
+        .pipe(gulp.dest(vendor + '/@angular'));
+    gulp.src(angularBundles.browserdynamic)
+        .pipe(gulp.dest(vendor + '/@angular'));
+    gulp.src(angularBundles.http)
+        .pipe(gulp.dest(vendor + '/@angular'));
+    gulp.src(angularBundles.router)
+        .pipe(gulp.dest(vendor + '/@angular'));
+    gulp.src(angularBundles.forms)
         .pipe(gulp.dest(vendor + '/@angular'));
 
-    gulp.src('node_modules/es6-shim/**')
-        .pipe(gulp.dest(vendor + '/es6-shim'));
+    return gulp.src('systemjs.config.js')
+        .pipe(gulp.dest('/public/'));    
 
+});
+
+
+gulp.task('vendor', function() {
     //reflect metadata
     gulp.src('node_modules/reflect-metadata/**')
         .pipe(gulp.dest(vendor + '/reflect-metadata/'));
 
+
+    //shim
+    gulp.src('node_modules/core-js/client/shim.min.js')
+        .pipe(gulp.dest(vendor + '/core-js/'));
     //rxjs
     gulp.src('node_modules/rxjs/**')
         .pipe(gulp.dest(vendor + '/rxjs/'));
@@ -61,5 +95,5 @@ gulp.task('watch', function() {
    gulp.watch(appDev + '**/*.{html,htm,css}', ['build-copy']); 
 });
 
-gulp.task('default', ['watch', 'build-ts', 'build-copy', 'vendor']);
-gulp.task('build', ['build-ts', 'build-copy', 'vendor']);
+gulp.task('default', ['watch', 'build-ts', 'build-copy', 'vendor', 'bundles']);
+gulp.task('build', ['build-ts', 'build-copy', 'vendor', 'bundles']);
