@@ -9,7 +9,10 @@ Before run project please do `npm install` to install necessary dependencies
 
 ## Tasks:
 
-`npm start`
-`npm run gulp`
-`npm run gulp`
-`npm run build:production`
+`npm start` - development version with mlab.com mongodb instance
+
+`npm run start:win` - run with local instance of MongoDB on windows host
+
+`npm run gulp` - gulp workflow tasks
+
+`npm run build:production` - task config in progress...

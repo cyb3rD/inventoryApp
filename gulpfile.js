@@ -39,7 +39,7 @@ gulp.task('clean', function() {
    del(appProd + '/**/*');
 });
 
-
+// Copy Angular2 core bundles
 gulp.task('bundles', function() {
     gulp.src(angularBundles.core)
         .pipe(gulp.dest(vendor + '/@angular'));

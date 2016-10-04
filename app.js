@@ -4,20 +4,30 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var config = require('config');
+// var config = require('config');
+var mLabConnect = require('./config/mlab');
 var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
 
 var app = express();
 
-var Database = config.get('DB');
+// var Database = config.get('DB');
 
-// Database setup
-var db = mongoose.connect(
-    `mongodb://${Database.username}:${Database.password}@${Database.url}`,
-    (error) => error && console.log(error)
-);
+var connectionString =  mLabConnect;
+
+console.log('Environment: ', process.env.NODE_ENV);
+
+// Running with `npm run start_win` will initiate using local instance of mongoDB
+if(process.env.NODE_ENV) {
+  connectionString = 'localhost:27017/node-inventory'
+} else {
+  connectionString =  mLabConnect;
+}
+
+// Database using mLab or local host according environment setup
+var db = mongoose.connect( connectionString, (error) => error && console.log(error));
+
 mongoose.connection.once('connected', () =>
     console.log("Database successfully connected"));
 

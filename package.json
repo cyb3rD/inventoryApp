@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start:win": "set NODE_ENV=production&&node ./bin/www",
     "postinstall": "typings install",
     "typings": "typings",
     "vendor": "gulp vendor",
