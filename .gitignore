@@ -1,4 +1,5 @@
-/node_modules
+.vscode
+node_modules
 
 /public/js
 /public/stylesheets
