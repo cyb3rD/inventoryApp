@@ -9,7 +9,18 @@ router.get('/', function(req, res, next) {
 
 // Draft for check data savings in MongoDB
 router.get('/departments', function(req, res, next) {
-    res.render('departments');
+    // Get all Departments
+    Department.find({}, function (err, docs) {
+        if (err) {
+            return res.send('Error! ');
+        }
+        var depName = 'Departments from Mongo in console';
+        console.log(docs);
+        // TODO:
+        // Output in select all Departments from DB
+        res.render('departments', {department: depName});
+    })
+    
 });
 
 router.post('/add/department', function(req, res, next) {
