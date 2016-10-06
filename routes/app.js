@@ -3,27 +3,31 @@ var router = express.Router();
 
 var Department = require('../models/department');
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
     res.render('index');
 });
 
 // Draft for check data savings in MongoDB
-router.get('/departments', function(req, res, next) {
+router.get('/departments', (req, res, next) => {
     // Get all Departments
-    Department.find({}, function (err, docs) {
+    var depNames= [];
+    Department.find({}, (err, docs) => {
         if (err) {
             return res.send('Error! ');
         }
-        var depName = 'Departments from Mongo in console';
         console.log(docs);
-        // TODO:
-        // Output in select all Departments from DB
-        res.render('departments', {department: depName});
+        docs.forEach((item, index, arr) => {
+            console.log(item.title);
+            depNames.push(item.title);
+        });
+        console.log(depNames);
+        // SEND data to hbs template
+        res.render('departments', {departments: depNames});
     })
     
 });
 
-router.post('/add/department', function(req, res, next) {
+router.post('/add/department', (req, res, next) => {
     var department = req.body.department;
     var dep = new Department({
         title: department
