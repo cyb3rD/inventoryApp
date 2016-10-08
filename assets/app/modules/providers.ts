@@ -1,4 +1,6 @@
 // Services for the app
-export const PROVIDERS =  [
+import { DeviceService } from '../services/device.service';
 
+export const PROVIDERS =  [
+        DeviceService
     ]
