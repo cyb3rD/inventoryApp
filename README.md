@@ -13,6 +13,6 @@ Before run project please do `npm install` to install necessary dependencies
 
 `npm run start:win` - run with local instance of MongoDB on windows host
 
-`npm run gulp` - gulp workflow tasks
+`npm run build` - build development bundle with webpack
 
-`npm run build:production` - task config in progress...
+`npm run build:prod` - build production bundle
