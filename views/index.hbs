@@ -4,22 +4,13 @@
     <base href="/">
     <title>Inventory App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- 1. Load libraries -->
-    <!-- Polyfill(s) for older browsers -->
-    <script src="js/vendor/core-js/shim.min.js"></script>
 
-    <script src="js/vendor/zone.js/dist/zone.js"></script>
-    <script src="js/vendor/reflect-metadata/Reflect.js"></script>
-    <script src="js/vendor/systemjs/dist/system.src.js"></script>
-
-    <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
 </head>
 <body>
 <my-app>Loading...</my-app>
 
-<script>
-    System.import('app').catch(function(err){ console.error(err);  });
+<script src="/js/app/bundle.js"></script>
+   
 </script>
 </body>
 </html>

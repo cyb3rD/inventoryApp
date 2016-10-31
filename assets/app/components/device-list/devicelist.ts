@@ -6,7 +6,7 @@ import { DeviceService } from '../../services/device.service';
 // Render device-item with data from the DeviceService
 
 @Component({
-    moduleId: module.id,
+    // moduleId: module.id,
     selector: 'device-list',
     template: `
     <p>DeviceList component</p>

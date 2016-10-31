@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    moduleId: module.id,
+    // moduleId: module.id,
     selector: 'device-item',
     templateUrl: 'deviceitem.html'
 })
